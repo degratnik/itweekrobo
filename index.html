@@ -1,1 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>IT WEEK Robo</title>
+<style>
+html, body {
+ margin: 0px;
+ padding: 0px;
+ width:100%;
+ height: 100%;
+ overflow: hidden;
+ position: relative;
+}
+.video {
+  width:100%;
+  height:100%;
+}
+.btn {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.35);
+  box-shadow: 2px 2px 24px #444;
+  position: absolute;
+  z-index: 10;
+}
+#forward {
+  right: 60px;
+  bottom: 188px;
+}
+#forward:hover, #forward:active, #forward:focus,
+#backward:hover, #backward:active, #backward:focus,
+#left:hover, #left:active, #left:focus,
+#right:hover, #right:active, #right:focus {
+  background: #407cf7;
+  box-shadow: 1px 1px 14px #444;
+}
+#forward:after {
+  content: "";
+  width: 0; 
+  height: 0; 
+  border-left: 17px solid transparent;
+  border-right: 17px solid transparent;
+  border-bottom: 17px solid #fff;
+  top: 36%;
+  left: 31%;
+  position: absolute;
+}
+#backward {
+  right: 60px;
+  bottom: 50px;
+}
+#backward:after {
+  content: "";
+  width: 0; 
+  height: 0; 
+  border-left: 17px solid transparent;
+  border-right: 17px solid transparent;
+  border-top: 17px solid #fff;
+  top: 44%;
+  left: 31%;
+  position: absolute;
+}
+#left {
+  left:60px;
+  bottom: 50px;
+}
+#left:after {
+  content: "";
+  width: 0; 
+  height: 0; 
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-right: 17px solid #fff;
+  top: 29%;
+  left: 34%;
+  position: absolute;
+}
+#right {
+  left:200px;
+  bottom: 50px;
+}
+#right:after {
+  content: "";
+  width: 0; 
+  height: 0; 
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 17px solid #fff;
+  top: 29%;
+  left: 45%;
+  position: absolute;
+}
+</style>
+</head>
+<body>
 
+<iframe src="https://appr.tc/r/286738533" class="video"></iframe>
+<div id="forward" class="btn"></div>
+<div id="backward" class="btn"></div>
+<div id="left" class="btn"></div>
+<div id="right" class="btn"></div>
+
+<script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+<script>
+
+$( "#forward" ).click(function() {
+	$.ajax({
+		  type: "POST",
+		  url: "http://10.24.2.102/cmd?left=50&right=50&duration=500",
+		  dataType: "json",
+		  beforeSend: function() {
+		  },
+		  cache: !1,
+		  success: function(data) {
+			  console.log(data);
+		  },
+		  error: function() {
+			  console.log('Forward error!');
+		  }
+	  })
+});
+
+$( "#backward" ).click(function() {
+	$.ajax({
+		  type: "POST",
+		  url: "http://10.24.2.102/cmd?left=-50&right=-50&duration=500",
+		  dataType: "json",
+		  beforeSend: function() {
+		  },
+		  cache: !1,
+		  success: function(data) {
+			  console.log(data);
+		  },
+		  error: function() {
+			  console.log('Backward error!');
+		  }
+	  })
+});
+
+$( "#left" ).click(function() {
+	$.ajax({
+		  type: "POST",
+		  url: "http://10.24.2.102/cmd?left=0&right=50&duration=500",
+		  dataType: "json",
+		  beforeSend: function() {
+		  },
+		  cache: !1,
+		  success: function(data) {
+			  console.log(data);
+		  },
+		  error: function() {
+			  console.log('Left error!');
+		  }
+	  })
+});
+
+$( "#right" ).click(function() {
+	$.ajax({
+		  type: "POST",
+		  url: "http://10.24.2.102/cmd?left=50&right=0&duration=500",
+		  dataType: "json",
+		  beforeSend: function() {
+		  },
+		  cache: !1,
+		  success: function(data) {
+			  console.log(data);
+		  },
+		  error: function() {
+			  console.log('Right error!');
+		  }
+	  })
+});
+
+
+</script>
+
+</body>
+</html>
