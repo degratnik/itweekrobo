@@ -106,6 +106,7 @@ html, body {
 
 <script>
 
+
 var factor = $('#factor').val();
 var roomNo = $('#room').val();
 
@@ -137,7 +138,7 @@ if (room !== undefined) {
 $( "#forward" ).click(function() {
 	$.ajax({
 		  type: "POST",
-		  url: "//10.24.2.102/cmd?left=50&right=50&duration=500",
+		  url: "http://10.24.2.102/cmd?left=50&right=50&duration=500",
 		  dataType: "json",
 		  beforeSend: function() {
 		  },
@@ -154,7 +155,7 @@ $( "#forward" ).click(function() {
 $( "#backward" ).click(function() {
 	$.ajax({
 		  type: "POST",
-		  url: "//10.24.2.102/cmd?left=-50&right=-50&duration=500",
+		  url: "http://10.24.2.102/cmd?left=-50&right=-50&duration=500",
 		  dataType: "json",
 		  beforeSend: function() {
 		  },
@@ -171,7 +172,7 @@ $( "#backward" ).click(function() {
 $( "#left" ).click(function() {
 	$.ajax({
 		  type: "POST",
-		  url: "//10.24.2.102/cmd?left=0&right=50&duration=500",
+		  url: "http://10.24.2.102/cmd?left=0&right=50&duration=500",
 		  dataType: "json",
 		  beforeSend: function() {
 		  },
@@ -188,7 +189,7 @@ $( "#left" ).click(function() {
 $( "#right" ).click(function() {
 	$.ajax({
 		  type: "POST",
-		  url: "//10.24.2.102/cmd?left=50&right=0&duration=500",
+		  url: "http://10.24.2.102/cmd?left=50&right=0&duration=500",
 		  dataType: "json",
 		  beforeSend: function() {
 		  },
@@ -207,4 +208,3 @@ $( "#right" ).click(function() {
 
 </body>
 </html>
-
