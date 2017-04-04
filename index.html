@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>IT WEEK Robo</title>
+<title>WebRTC</title>
 <style>
 html, body {
  margin: 0px;
@@ -25,14 +25,14 @@ html, body {
   position: absolute;
   z-index: 10;
 }
+.btn.hide {
+  display: none;
+}
 #forward {
   right: 60px;
   bottom: 188px;
 }
-#forward:hover, #forward:active, #forward:focus,
-#backward:hover, #backward:active, #backward:focus,
-#left:hover, #left:active, #left:focus,
-#right:hover, #right:active, #right:focus {
+#forward:active, #backward:active, #left:active, #right:active {
   background: #407cf7;
   box-shadow: 1px 1px 14px #444;
 }
@@ -93,22 +93,51 @@ html, body {
   position: absolute;
 }
 </style>
+<script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
 </head>
 <body>
-
-<iframe src="https://appr.tc/r/286738533" class="video"></iframe>
+<iframe id="video" src="https://appr.tc/r/286738533" class="video"></iframe>
 <div id="forward" class="btn"></div>
 <div id="backward" class="btn"></div>
 <div id="left" class="btn"></div>
 <div id="right" class="btn"></div>
+<!-- <input id="factor" name= "factor" value="0.5" min="0.5" max="1.5" /> -->
+<!-- <input id="room" name= "room" value="286738533" /> -->
 
-<script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
 <script>
+
+var factor = $('#factor').val();
+var roomNo = $('#room').val();
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
+    function(m,key,value) {
+      vars[key] = value;
+    });
+	return vars;
+}
+
+function refreshFrame(room){
+    $('#video').attr('src', 'https://appr.tc/r/' + room);
+}
+
+var mode = getUrlVars()["mode"];
+var room = getUrlVars()["room"];
+
+if (mode === undefined) {
+  $('.btn').addClass('hide');
+}
+
+if (room !== undefined) {
+  refreshFrame(room);
+}
+
 
 $( "#forward" ).click(function() {
 	$.ajax({
 		  type: "POST",
-		  url: "http://10.24.2.102/cmd?left=50&right=50&duration=500",
+		  url: "https://10.24.2.102/cmd?left=50&right=50&duration=500",
 		  dataType: "json",
 		  beforeSend: function() {
 		  },
@@ -125,7 +154,7 @@ $( "#forward" ).click(function() {
 $( "#backward" ).click(function() {
 	$.ajax({
 		  type: "POST",
-		  url: "http://10.24.2.102/cmd?left=-50&right=-50&duration=500",
+		  url: "https://10.24.2.102/cmd?left=-50&right=-50&duration=500",
 		  dataType: "json",
 		  beforeSend: function() {
 		  },
@@ -142,7 +171,7 @@ $( "#backward" ).click(function() {
 $( "#left" ).click(function() {
 	$.ajax({
 		  type: "POST",
-		  url: "http://10.24.2.102/cmd?left=0&right=50&duration=500",
+		  url: "https://10.24.2.102/cmd?left=0&right=50&duration=500",
 		  dataType: "json",
 		  beforeSend: function() {
 		  },
@@ -159,7 +188,7 @@ $( "#left" ).click(function() {
 $( "#right" ).click(function() {
 	$.ajax({
 		  type: "POST",
-		  url: "http://10.24.2.102/cmd?left=50&right=0&duration=500",
+		  url: "https://10.24.2.102/cmd?left=50&right=0&duration=500",
 		  dataType: "json",
 		  beforeSend: function() {
 		  },
@@ -178,3 +207,4 @@ $( "#right" ).click(function() {
 
 </body>
 </html>
+
