@@ -137,7 +137,7 @@ if (room !== undefined) {
 
 $( "#forward" ).click(function() {
 	$.ajax({
-		  type: "POST",
+		  type: "GET",
 		  url: "https://10.24.9.21:4443/forward",
 		  dataType: "json",
 		  beforeSend: function() {
@@ -154,7 +154,7 @@ $( "#forward" ).click(function() {
 
 $( "#backward" ).click(function() {
 	$.ajax({
-		  type: "POST",
+		  type: "GET",
 		  url: "https://10.24.9.21:4443/backward",
 		  dataType: "json",
 		  beforeSend: function() {
@@ -171,7 +171,7 @@ $( "#backward" ).click(function() {
 
 $( "#left" ).click(function() {
 	$.ajax({
-		  type: "POST",
+		  type: "GET",
 		  url: "https://10.24.9.21:4443/left",
 		  dataType: "json",
 		  beforeSend: function() {
@@ -188,7 +188,7 @@ $( "#left" ).click(function() {
 
 $( "#right" ).click(function() {
 	$.ajax({
-		  type: "POST",
+		  type: "GET",
 		  url: "https://10.24.9.21:4443/right",
 		  dataType: "json",
 		  beforeSend: function() {
